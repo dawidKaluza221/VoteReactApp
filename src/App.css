@@ -1,0 +1,83 @@
+ @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+ *{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato',sans-serif;
+}
+.home{
+  display: flex;
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+ .background{
+    background-image: linear-gradient(79deg,#7439db, #c66fbc 48% ,#f7944d);
+  }
+  .App {
+    text-align: center;
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .CreatePoll-form,.auth-form-container, .login-form, .register-form{
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media screen and (min-width:600px) {
+    .auth-form-container{
+      padding: 5rem;
+      border: 1px solid white;
+      border-radius: 10px;
+      margin: 0.5rem;
+    }
+  }
+  
+  label{
+    text-align: left;
+    padding: 0.25rem 0;
+  }
+
+  input{
+    margin: 0.5rem 0;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+  }
+  .inputPoll{
+    margin: 0.5rem 0;
+    padding: 1rem ;
+    border: none;
+    border-radius: 10px;
+  }
+  .imputAnswer{
+    margin: 0.5rem 0;
+    padding: 1.5rem;
+    border: none;
+    border-radius: 10px;
+  }
+  .imputQuestion{
+    margin: 0.5rem 0;
+    padding: 1.5rem ;
+    border: none;
+    border-radius: 10px;
+  }
+  .click-btn{
+    border: none;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #7439db;
+  }
+
+  .link-btn{
+    background: none;
+    color: white;
+    text-decoration: underline;
+  }
