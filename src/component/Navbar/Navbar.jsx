@@ -9,6 +9,7 @@ import  './Navbar.css';
 export const Navbar =()=>{
     const[sidebar,setSidebar] = useState(false);
     const showSidebar =()=>setSidebar(!sidebar);
+
     return(
         <>
             <IconContext.Provider value={{color:'#fff'}}>
@@ -16,21 +17,21 @@ export const Navbar =()=>{
                     <Link to="#" className='menu-bars'>
                         <FaIcons.FaBars onClick={showSidebar}/>
                     </Link>
-                    <Link type="button" className="Login-btn" to="/Login">Log-in</Link>
-                    <Link type="button" className="Register-btn" to="/Login">Sign-up</Link>
+                    <Link type="button" className="Login-btn" to="/Login" onClick={"toogle();"}>Log-in</Link>
+                    <Link type="button" className="Register-btn" to="/Register">Sign-up</Link>
                 </div>
                 <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
                     <ul className='nav-menu-items'  onClick={showSidebar}>
                         <li>
                             <Link to="#" className="menu-bars">
-                                <AiIcons.AiOutlineClose/>
+                                <AiIcons.AiOutlineClose className="menu-bars-close-icon"/>
                             </Link>
                         </li>
                         {SidebarData.map((item,index)=>{
                             return(<li key = {index} className = {item.cName}>
                                 <Link to ={item.path}>
                                     {item.icon}
-                                    <span>{item.title}</span>
+                                    <span>&nbsp;{item.title}</span>
                                 </Link>
                             </li>)
                         })}

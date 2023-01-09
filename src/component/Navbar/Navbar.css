@@ -15,9 +15,14 @@
     font-size: 2rem;
     background: none;
 }
-
+.menu-bars-close-icon{
+    margin-top: 1.5rem;
+    font-size: 2rem;
+    background: none;
+}
 .nav-menu{
-background-color: #c66fbc;
+background-color: #7439db;
+/*rgba(0,0,0,.5)*/
 width:250px;
 height: 100vh;
 display: flex;
