@@ -52,7 +52,7 @@ export const Register = (props) => {
                 <input value = {state.name} onChange={handleChange} type="name" placeholder="Imie i Nazwisko" id = "name" name = "name" required />
                 <label htmlFor= "password">Hasło</label>
                 <input value = {state.password} onChange={handleChange} type="password" placeholder="**********" id = "password" name = "password" required/>
-                <button type="submit" className="click-btn" to="/Login"> zarejestruj Byczqu</button>
+                <button type="submit" className="click-btn"> zarejestruj Byczqu</button>
                 <div className="message">{message ? <p>{message}</p> : null}</div>
             </form>
             <Link className="link-btn" to="/Login"> Masz już konto? zalloguj sie Byczqu</Link>
