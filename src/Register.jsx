@@ -6,7 +6,9 @@ export const Register = (props) => {
     const [state,setState] = useState({
         email:"",
         name:"",
-        password:""
+        password:"",
+        surname:"",
+        GivenName:""
     });
     
     const handleChange = (e) =>{
@@ -21,7 +23,10 @@ export const Register = (props) => {
             id: 0,
             name: state.name,
             email: state.email,
-            password: state.password
+            password: state.password,
+            surname:state.surname,
+            GivenName:state.GivenName,
+            role: "User"
         };
         axios.post("https://localhost:7092/api/Vote/CreateEditUser", userData).then((response) => {
         console.log(response.status);
@@ -48,8 +53,12 @@ export const Register = (props) => {
             <form className ="register-form" onSubmit={handleSubmit} >
                 <label htmlFor= "email">email</label>
                 <input value = {state.email} onChange={handleChange} type="email" placeholder="twojmail@gmial.com" id = "email" name = "email" required/>
-                <label htmlFor= "name">name</label>
+                <label htmlFor= "name">Imie</label>
                 <input value = {state.name} onChange={handleChange} type="name" placeholder="Imie i Nazwisko" id = "name" name = "name" required />
+                <label htmlFor= "surname">Nazwisko</label>
+                <input value = {state.surname} onChange={handleChange} type="surname" placeholder="Nazwisko" id = "surname" name = "surname" required/>
+                <label htmlFor= "GivenName">Pseudonim</label>
+                <input value = {state.GivenName} onChange={handleChange} type="GivenName" placeholder="Pseudonim" id = "GivenName" name = "GivenName" required/>
                 <label htmlFor= "password">Hasło</label>
                 <input value = {state.password} onChange={handleChange} type="password" placeholder="**********" id = "password" name = "password" required/>
                 <button type="submit" className="click-btn"> zarejestruj Byczqu</button>

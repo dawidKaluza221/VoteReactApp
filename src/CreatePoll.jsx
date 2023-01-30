@@ -13,7 +13,9 @@ export const CreatePoll =()=>
     const [ID_Poll,SetID_Poll] = useState({
         id_poll:''//nie wiem czy dobra zmienna
     });
-
+    const IDPollChange = (e) => {
+        SetID_Poll(e);
+    }
     const handleAddTitle =(e)=>{
         const value = e.target.value;
         SetTitle({
@@ -26,28 +28,52 @@ export const CreatePoll =()=>
         e.preventDefault();
         const userData ={
             iD_Poll: 0,
-            iD_User: 2,
+            iD_User: 1005,
             pollName: state.pollName,
             protectionAction:0,
             protectionView:0,
         };
         axios.post("https://localhost:7092/api/Vote/CreateEditPoll", userData).then((response) => {
-        //console.log(response.status);
+        console.log(response.data);
         if(response.status===200){
-            //console.log(response.data);
-            SetID_Poll(response.data['iD_Poll']);
-            console.log({ID_Poll})
-            const userAnswer={
-                iD_Question: 0,
-                iD_Poll:ID_Poll,
-                question:"No zoabczymy jak to dziala"
-            };
-            axios.post("https://localhost:7092/api/Vote/CreateQuestion",userAnswer ).then((res)=>{
-                console.log(res.data);
+            form.forEach((size)=>{
+                let userQuestion={
+                    iD_Question: 0,
+                    ID_Poll: response.data['iD_Poll'],
+                    
+                    question:size.Question
+                };
+                axios.post("https://localhost:7092/api/Vote/CreateQuestion",userQuestion ).then((res)=>{
+                    console.log(res.data);
+                    if(res.status===200){
+                        console.log(size);
+                        let userAnswer ={
+                            idAnswer:0,
+                            idQuestion: res.data['iD_Question'],
+                            answer:size.Answer,
+                            counterAnswer:0,
+                        };
+                        axios.post("https://localhost:7092/api/Vote/CreateAnswer",userAnswer ).then((resp)=>{
+                            console.log(resp.data);
+                        })
+                        let userAnswer1 ={
+                            idAnswer:0,
+                            idQuestion: res.data['iD_Question'],
+                            answer:size.Answer1,
+                            counterAnswer:0,
+                        };
+                        axios.post("https://localhost:7092/api/Vote/CreateAnswer",userAnswer1 ).then((resp)=>{
+                            console.log(resp.data);
+                        })
+                    }
+                })
             })
+            
+            
             //window.location.replace('http://localhost:3000');
         }
-    }).catch((error) => {
+
+        }).catch((error) => {
         if (error.response) {
           console.log(error.response);
           console.log("server responded");
@@ -64,7 +90,7 @@ export const CreatePoll =()=>
         const inputState = {
             Question:"",
             Answer:"",
-
+            Answer1:"",
            
         };
         setForm((prev) =>[...prev, inputState]);
@@ -80,7 +106,7 @@ export const CreatePoll =()=>
                 return{
                     ...item,
                     [event.target.name]:event.target.value,
-
+                    
                 };
             });
         });
@@ -93,15 +119,14 @@ export const CreatePoll =()=>
     };
     return(
     <form className="auth-form-container"  onSubmit={handleSubmit} >
-        <h2>Create a Poll</h2>
-        {JSON.stringify(form)}
+        <h2>Stwórz Ankietę</h2>
         <div className ="CreatePoll-form" >
             <label htmlFor= "text" ></label>
-            <input type="text" className="inputPoll" id = "pollName" name = "pollName"  placeholder="pollName" value={state.pollName} onChange={handleAddTitle} required/>
+            <input type="text" className="inputPoll" id = "pollName" name = "pollName"  placeholder="tytul" value={state.pollName} onChange={handleAddTitle} required/>
         </div>
         <div className="CreatePoll-form" >
             {form.map((item,index)=>(
-                <div className=" row" key = {`item-${index}`}>
+                <div className=" inputPoll" key = {`item-${index}`}>
                     <div className="col">
                         <input
                         type="text"
@@ -129,10 +154,23 @@ export const CreatePoll =()=>
                         required
                         />  
                     </div>
+                    <div className="col">
+                        <input
+                        type="text"
+                        className="imputAnswer" 
+                        id = "Answer1"
+                        name = "Answer1"
+                        placeholder="Answer1"
+                        value={item.Answer1}
+                        onChange={(e)=>onChange(index,e)}
+                        required
+                        />  
+                    </div>
                     
                 </div>
             ))}
-            <button className="click-btn" onClick={handleAddForm}> Dodaj Pytanie</button>
+           <button className="click-btn" onClick={handleAddForm}> Dodaj Pytanie</button>
+            
             
         </div>
         <button  className="click-btn" to=""> Zapisz</button>

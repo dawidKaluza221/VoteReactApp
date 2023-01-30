@@ -5,20 +5,20 @@ import * as IoIcons from 'react-icons/io';
 
 export const SidebarData =[
     {
-        title:" Home",
-        path:'/',
+        title:" Ankiety",
+        path:'/Homepage',
         icon:<AiIcons.AiFillHome/>,
         cName:'nav-text'
     },
     {
-        title:' CreatePoll',
+        title:' Stwórz Ankiete',
         path:'/CreatePoll',
         icon:<AiIcons.AiFillPlusCircle/>,
         cName:'nav-text'
     },
     {
-        title:' Info',
-        path:'/',
+        title:' Wyniki',
+        path:'/PresentationAll',
         icon:<AiIcons.AiFillQuestionCircle/>,
         cName:'nav-text'
     }

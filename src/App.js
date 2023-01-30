@@ -9,6 +9,9 @@ import { Homepage } from './Homepage';
 import { Routes } from 'react-router-dom/dist';
 import { CreatePoll } from './CreatePoll';
 import { Navbar } from './component/Navbar/Navbar';
+import { VoteSite } from './VoteSite';
+import { Presentation } from './Presentation';
+import { PresentationAll } from './PresentationAll';
 function App() {
   /*const[currentForm,setCurrentForm] = useState('login');
   <div className="App">
@@ -28,10 +31,13 @@ function App() {
         <div className='App'>
           <Routes >
             
-            <Route path="" element={<Homepage/>}></Route> 
+            <Route path="/Homepage" element={<Homepage/>}></Route> 
             <Route path="/Login" element={<Login/>}></Route>
             <Route path="/Register" element={<Register/>}></Route>
             <Route path="/CreatePoll" element={<CreatePoll/>}></Route>
+            <Route path="/VoteSite/:ID_Poll" element={<VoteSite/>}></Route>
+            <Route path="/PresentationAll" element={<PresentationAll/>}></Route>
+            <Route path="/Presentation/:IdAnswer" element={<Presentation/>}></Route>
           </Routes>
         </div>
       </div>
